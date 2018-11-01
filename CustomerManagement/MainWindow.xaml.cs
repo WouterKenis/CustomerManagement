@@ -47,7 +47,7 @@ namespace CustomerManagement
 
                     cmd.ExecuteNonQuery();
                 }
-
+                //g
                 //CustomerManagement.Update(database.Stocks); //LINE***added later but still getting "Incorrect syntax near the keyword 'Open'."
             }
         }
