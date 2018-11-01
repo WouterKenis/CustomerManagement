@@ -35,7 +35,7 @@ namespace CustomerManagement
             {
                 conn.Open();
 
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO Table (First Name, Last Name, Address, Postcode, Country, Phonenumber, E-mail) VALUES (Wouter, Kenis,Funnystreet 3, 3600, Belgium, 0496220524, da.wouter@gmail.com)"))
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO Table (First Name, Last Name, Address, Postcode, Country, Phonenumber, E-mail) VALUES (Wouter, Kenis,Funnystreet 3, 3600, Belgium, 0496220524, bla@gmail.com)"))
                 {
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = conn;
