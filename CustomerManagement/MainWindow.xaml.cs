@@ -26,30 +26,80 @@ namespace CustomerManagement
         {
             InitializeComponent();
 
-            string sqlCon = @"Data Source=.\SQLEXPRESS;" +
-                @"AttachDbFilename=|DataDirectory|\Customers.mdf;
-                Integrated Security=True;
-                Connect Timeout=30;
-                User Instance=True";
-            using (SqlConnection conn = new SqlConnection(sqlCon))
-            {
-                conn.Open();
+            Customer wouter = new Customer("Wouter", "Kenis");
+            wouter.Address = "Funnystreet 3";
+            wouter.Country = "Belgium";
+            wouter.Phonenumber = "0444444444";
+            wouter.Postcode = "3600";
+            wouter.Email = "none@ofyourbusiness.com";
 
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO Table (First Name, Last Name, Address, Postcode, Country, Phonenumber, E-mail) VALUES (Wouter, Kenis,Funnystreet 3, 3600, Belgium, 0496220524, da.wouter@gmail.com)"))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Connection = conn;
+            Customer wouter2 = new Customer("W00ter", "Kenis");
+            wouter2.Address = "Funnystreet 3";
+            wouter2.Country = "Belgium";
+            wouter2.Phonenumber = "0444444444";
+            wouter2.Postcode = "3600";
+            wouter2.Email = "none@ofyourbusiness.com";
 
-                    //cmd.Parameters.AddWithValue("@Open", textBox13.Text);
-                    //cmd.Parameters.AddWithValue("@High", textBox14.Text);
-                    //cmd.Parameters.AddWithValue("@Low", textBox15.Text);
-                    //cmd.Parameters.AddWithValue("@Close", textBox16.Text);
+            Customer wouter3 = new Customer("Clone", "Kenis");
+            wouter3.Address = "Funnystreet 3";
+            wouter3.Country = "Belgium";
+            wouter3.Phonenumber = "0444444444";
+            wouter3.Postcode = "3600";
+            wouter3.Email = "none@ofyourbusiness.com";
 
-                    cmd.ExecuteNonQuery();
-                }
-                //g
-                //CustomerManagement.Update(database.Stocks); //LINE***added later but still getting "Incorrect syntax near the keyword 'Open'."
-            }
+            List<Customer> customerList = new List<Customer>();
+            customerList.Add(wouter);
+            customerList.Add(wouter2);
+            customerList.Add(wouter3);
+
+            allCustomersComboBox.ItemsSource = customerList;
+
+            allCustomersComboBox.SelectedIndex = allCustomersComboBox.Items.Count - 1;
+
+            //string sqlCon = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename = C:\Users\Gebruiker\source\repos\CustomerManagement\CustomerManagement\Customers.mdf; Integrated Security = True";
+            //using (SqlConnection conn = new SqlConnection(sqlCon))
+            //{
+            //    conn.Open();
+
+            //    using (SqlCommand cmd = new SqlCommand("INSERT INTO Table (First Name, Last Name, Address, Postcode, Country, Phonenumber, E-mail) VALUES ('Wouter', 'Kenis','Funnystreet 3', '3600', 'Belgium', '0496220524', 'bla@gmail.com')"))
+            //    {
+            //        cmd.CommandType = CommandType.Text;
+            //        cmd.Connection = conn;
+
+            //        //cmd.Parameters.AddWithValue("@Open", textBox13.Text);
+            //        //cmd.Parameters.AddWithValue("@High", textBox14.Text);
+            //        //cmd.Parameters.AddWithValue("@Low", textBox15.Text);
+            //        //cmd.Parameters.AddWithValue("@Close", textBox16.Text);
+
+            //        cmd.ExecuteNonQuery();
+            //        conn.Close();
+            //    }
+            //    //g
+            //    //CustomerManagement.Update(database.Stocks); //LINE***added later but still getting "Incorrect syntax near the keyword 'Open'."
+            //}
+
+            
+        }
+
+        private void saveButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void allCustomersComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataContext = (Customer)allCustomersComboBox.SelectedItem;
+        }
+
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddCustomerScreen addCustomerScreen = new AddCustomerScreen();
+            addCustomerScreen.Show();
         }
     }
 }

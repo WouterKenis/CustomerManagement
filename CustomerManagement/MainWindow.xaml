@@ -5,9 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerManagement"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="300" Width="625">
     <Grid>
-        <TextBox Name="output" HorizontalAlignment="Left" Height="253" Margin="189,118,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="479"/>
+        <Label Content="Firstname" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="Lastname" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,25,0,0"/>
+        <Label Content="Address" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,50,0,0"/>
+        <Label Content="Postcode" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,80,0,0"/>
+        <Label Content="Country" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,110,0,0"/>
+        <Label Content="Phonenumber" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,135,0,0"/>
+        <Label Content="E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,167,0,0"/>
+        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,139,0,0"/>
+
+        <TextBox Name="firstNameBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=FirstName, Mode=TwoWay}" VerticalAlignment="Top" Width="208" Margin="132,3,0,0"/>
+        <TextBox Name="phoneNumberBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Phonenumber, Mode=TwoWay}" VerticalAlignment="Top" Width="208" Margin="132,138,0,0"/>
+        <TextBox Name="countryBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Country, Mode=TwoWay}" VerticalAlignment="Top" Width="208" Margin="132,110,0,0"/>
+        <TextBox Name="postcodeBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Postcode, Mode=TwoWay}" VerticalAlignment="Top" Width="208" Margin="132,82,0,0"/>
+        <TextBox Name="addressBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Address, Mode=TwoWay}" VerticalAlignment="Top" Width="208" Margin="132,57,0,0"/>
+        <TextBox Name="lastNameBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=LastName, Mode=TwoWay}" VerticalAlignment="Top" Width="208" Margin="132,31,0,0"/>
+        <TextBox Name="emailBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Email, Mode=TwoWay}" VerticalAlignment="Top" Width="208" Margin="132,167,0,0"/>
+        <ComboBox Name="allCustomersComboBox" HorizontalAlignment="Left" VerticalAlignment="Top" Width="235" Margin="373,4,0,0" SelectionChanged="allCustomersComboBox_SelectionChanged"/>
+        <Button Name="saveButton" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="0,205,0,0" Click="saveButton_Click"/>
+        <Button Name="deleteButton" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="80,205,0,0" Click="deleteButton_Click"/>
+        <Button Name="addButton" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="265,205,0,0" Click="addButton_Click"/>
 
     </Grid>
 </Window>

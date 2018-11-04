@@ -1,0 +1,28 @@
+﻿<Window x:Class="CustomerManagement.AddCustomerScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CustomerManagement"
+        mc:Ignorable="d"
+        Title="AddCustomerScreen" Height="275" Width="400">
+    <Grid>
+        <Label Content="Firstname" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+        <Label Content="Lastname" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,25,0,0"/>
+        <Label Content="Address" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,50,0,0"/>
+        <Label Content="Postcode" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,80,0,0"/>
+        <Label Content="Country" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,110,0,0"/>
+        <Label Content="Phonenumber" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,135,0,0"/>
+        <Label Content="E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,167,0,0"/>
+        <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,139,0,0"/>
+
+        <TextBox Name="firstNameBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,3,0,0"/>
+        <TextBox Name="phoneNumberBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,138,0,0"/>
+        <TextBox Name="countryBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,110,0,0"/>
+        <TextBox Name="postcodeBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,82,0,0"/>
+        <TextBox Name="addressBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,57,0,0"/>
+        <TextBox Name="lastNameBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,31,0,0"/>
+        <TextBox Name="emailBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,167,0,0"/>
+        <Button Content="Save" HorizontalAlignment="Right" VerticalAlignment="Top" Width="372" Margin="0,207,10,0" Click="Button_Click"/>
+    </Grid>
+</Window>
