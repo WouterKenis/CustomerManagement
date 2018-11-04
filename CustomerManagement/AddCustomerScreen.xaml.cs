@@ -110,21 +110,18 @@ namespace CustomerManagement
 
         }
 
-        private int getRowCount()
+        public int getRowCount()
         {
             int count = 0;
 
-            SqlConnection connection = new SqlConnection(connectionString);
-
             string query = "select count(*) from Customers";
 
+            SqlConnection connection = new SqlConnection(connectionString);
             SqlConnection connectionRowCount = new SqlConnection(connectionString);
             SqlCommand command = new SqlCommand(query, connection);
 
             connection.Open();
-
             count = (int)command.ExecuteScalar();
-
             connection.Close();
 
             return count;
