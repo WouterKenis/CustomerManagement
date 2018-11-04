@@ -57,9 +57,15 @@ namespace CustomerManagement
 
             connectionLookUp.Close();
 
-            searchResults.ItemsSource = customerSearchResults;
-            searchResults.SelectedIndex = 0;
-
+            if (customerSearchResults.Count == 0)
+            {
+                MessageBox.Show("No matching results.");
+            }
+            else
+            {
+                searchResults.ItemsSource = customerSearchResults;
+                searchResults.SelectedIndex = 0;
+            }
         }
 
         private void searchResults_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
