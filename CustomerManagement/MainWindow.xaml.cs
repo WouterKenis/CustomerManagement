@@ -27,7 +27,6 @@ namespace CustomerManagement
         {
             InitializeComponent();
 
-            //populate combobox
             string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;
             AttachDbFilename=C:\Users\Gebruiker\source\repos\CustomerManagement\CustomerManagement\Customers.mdf;Integrated Security=True";
 
@@ -42,11 +41,29 @@ namespace CustomerManagement
             SqlDataReader reader = command.ExecuteReader();
             List<Customer> customers = new List<Customer>();
 
+            int firstName = reader.GetOrdinal("First Name");
+            int lastName = reader.GetOrdinal("Last Name");
+            int address = reader.GetOrdinal("Address");
+            int postcode = reader.GetOrdinal("Postcode");
+            int country = reader.GetOrdinal("Country");
+            int phoneNumber = reader.GetOrdinal("Phonenumber");
+            int email = reader.GetOrdinal("E-mail");
+
             while (reader.Read())
             {
-                Customer customer = new Customer();
-                // =(
+                Customer customer = new Customer(reader.GetString(firstName), reader.GetString(lastName));
+
+                customer.Address = reader.GetString(address);
+                customer.Postcode = reader.GetString(postcode);
+                customer.Country = reader.GetString(country);
+                customer.Phonenumber = reader.GetString(phoneNumber);
+                customer.Email = reader.GetString(email);
+
+                customers.Add(customer);
             }
+
+            allCustomersComboBox.ItemsSource = customers;
+            allCustomersComboBox.SelectedIndex = allCustomersComboBox.Items.Count - 1;
 
             //Customer wouter = new Customer("Wouter", "Kenis");
             //wouter.Address = "Funnystreet 3";
