@@ -104,6 +104,11 @@ namespace CustomerManagement
             //update db, list, combobox
         }
 
+        public static void update()
+        {
+
+        }
+
 
         private void allCustomersComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
