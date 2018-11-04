@@ -13,18 +13,8 @@ namespace CustomerManagement
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        List<Customer> customers;
+        public List<Customer> customers;
         string connectionString;
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
 
         public MainWindow()
         {
@@ -162,7 +152,7 @@ namespace CustomerManagement
             {
                 connectionDelete.Close();
             }
-            MessageBox.Show(customers[allCustomersComboBox.SelectedIndex] + " " + allCustomersComboBox.SelectedIndex);
+
             customers.RemoveAt(allCustomersComboBox.SelectedIndex);
 
             allCustomersComboBox.ItemsSource = null;

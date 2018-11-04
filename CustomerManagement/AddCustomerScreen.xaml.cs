@@ -18,7 +18,7 @@ namespace CustomerManagement
             InitializeComponent();
 
             this.main = main;
-            this.customers = customers;
+            
 
             connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;
             AttachDbFilename=C:\Users\Gebruiker\source\repos\CustomerManagement\CustomerManagement\Customers.mdf;Integrated Security=True";
@@ -96,6 +96,7 @@ namespace CustomerManagement
             main.allCustomersComboBox.ItemsSource = customers;
             main.allCustomersComboBox.SelectedIndex = main.allCustomersComboBox.Items.Count - 1;
 
+            main.customers = customers;
             Close();
 
         }
