@@ -62,6 +62,8 @@ namespace CustomerManagement
                 customers.Add(customer);
             }
 
+            connection.Close();
+
             allCustomersComboBox.ItemsSource = customers;
             allCustomersComboBox.SelectedIndex = allCustomersComboBox.Items.Count - 1;
 
