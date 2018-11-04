@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows;
@@ -8,24 +9,31 @@ namespace CustomerManagement
 
     public partial class AddCustomerScreen : Window
     {
+        private string connectionString;
+        MainWindow main;
+        List<Customer> customers;
 
-        public AddCustomerScreen()
+        public AddCustomerScreen(MainWindow main, List<Customer> customers)
         {
             InitializeComponent();
+
+            this.main = main;
+            this.customers = customers;
+
+            connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;
+            AttachDbFilename=C:\Users\Gebruiker\source\repos\CustomerManagement\CustomerManagement\Customers.mdf;Integrated Security=True";
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
-            string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;
-            AttachDbFilename=C:\Users\Gebruiker\source\repos\CustomerManagement\CustomerManagement\Customers.mdf;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(connectionString);
 
-            SqlConnection connection = new SqlConnection(ConnectionString);
-
-            String query = "INSERT INTO dbo.Customers (First Name, Last Name, Address, Postcode, Country, Phonenumber, E-mail)" +
-                           "Values (@Firstname, @Lastname, @Address, @Postcode, @Country, @Phonenumber, @Email)";
+            string query = "INSERT INTO Customers (Id, FirstName, LastName, Address, Postcode, Country, Phonenumber, Email)" +
+                           "Values (@Id, @Firstname, @Lastname, @Address, @Postcode, @Country, @Phonenumber, @Email)";
 
             SqlCommand command = new SqlCommand(query, connection);
 
+            command.Parameters.Add("@Id", SqlDbType.Int).Value = getRowCount() + 1;
             command.Parameters.Add("@Firstname", SqlDbType.VarChar, 50).Value = firstNameBox.Text;
             command.Parameters.Add("@Lastname", SqlDbType.VarChar, 50).Value = lastNameBox.Text;
             command.Parameters.Add("@Address", SqlDbType.VarChar, 50).Value = addressBox.Text;
@@ -34,13 +42,81 @@ namespace CustomerManagement
             command.Parameters.Add("@Phonenumber", SqlDbType.VarChar, 50).Value = phoneNumberBox.Text;
             command.Parameters.Add("@Email", SqlDbType.VarChar, 50).Value = emailBox.Text;
 
-            connection.Open();
-            command.ExecuteNonQuery();
+            try
+            {
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            MessageBox.Show("Customer added.");
+
+            SqlConnection connectionUpdate = new SqlConnection(connectionString);
+
+            SqlCommand commandUpdate = new SqlCommand();
+            commandUpdate.Connection = connection;
+            commandUpdate.CommandText = "select * from Customers";
+
+            connectionUpdate.Open();
+
+            SqlDataReader reader = commandUpdate.ExecuteReader();
+            customers = new List<Customer>();
+
+            int firstName = reader.GetOrdinal("FirstName");
+            int lastName = reader.GetOrdinal("LastName");
+            int address = reader.GetOrdinal("Address");
+            int postcode = reader.GetOrdinal("Postcode");
+            int country = reader.GetOrdinal("Country");
+            int phoneNumber = reader.GetOrdinal("Phonenumber");
+            int email = reader.GetOrdinal("Email");
+
+            while (reader.Read())
+            {
+                Customer customer = new Customer(reader.GetString(firstName), reader.GetString(lastName));
+
+                customer.Address = reader.GetString(address);
+                customer.Postcode = reader.GetString(postcode);
+                customer.Country = reader.GetString(country);
+                customer.Phonenumber = reader.GetString(phoneNumber);
+                customer.Email = reader.GetString(email);
+
+                customers.Add(customer);
+            }
+
             connection.Close();
+
+            main.allCustomersComboBox.ItemsSource = customers;
+            main.allCustomersComboBox.SelectedIndex = main.allCustomersComboBox.Items.Count - 1;
 
             Close();
 
-            //main.allCustomersComboBox.ItemsSource
+        }
+
+        private int getRowCount()
+        {
+            int count = 0;
+
+            SqlConnection connection = new SqlConnection(connectionString);
+
+            string query = "select count(*) from Customers";
+
+            SqlConnection connectionRowCount = new SqlConnection(connectionString);
+            SqlCommand command = new SqlCommand(query, connection);
+
+            connection.Open();
+
+            count = (int)command.ExecuteScalar();
+
+            connection.Close();
+
+            return count;
         }
     }
 }

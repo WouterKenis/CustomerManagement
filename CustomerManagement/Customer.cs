@@ -43,7 +43,7 @@ namespace CustomerManagement
             get; set;
         }
 
-        public String Phonenumber
+        public string Phonenumber
         {
             get; set;
         }

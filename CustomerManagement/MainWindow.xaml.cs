@@ -23,6 +23,7 @@ namespace CustomerManagement
     /// </summary>
     public partial class MainWindow : Window
     {
+        List<Customer> customers;
         public MainWindow()
         {
             InitializeComponent();
@@ -39,15 +40,15 @@ namespace CustomerManagement
             connection.Open();
 
             SqlDataReader reader = command.ExecuteReader();
-            List<Customer> customers = new List<Customer>();
+            customers = new List<Customer>();
 
-            int firstName = reader.GetOrdinal("First Name");
-            int lastName = reader.GetOrdinal("Last Name");
+            int firstName = reader.GetOrdinal("FirstName");
+            int lastName = reader.GetOrdinal("LastName");
             int address = reader.GetOrdinal("Address");
             int postcode = reader.GetOrdinal("Postcode");
             int country = reader.GetOrdinal("Country");
             int phoneNumber = reader.GetOrdinal("Phonenumber");
-            int email = reader.GetOrdinal("E-mail");
+            int email = reader.GetOrdinal("Email");
 
             while (reader.Read())
             {
@@ -67,49 +68,12 @@ namespace CustomerManagement
             allCustomersComboBox.ItemsSource = customers;
             allCustomersComboBox.SelectedIndex = allCustomersComboBox.Items.Count - 1;
 
-            //Customer wouter = new Customer("Wouter", "Kenis");
-            //wouter.Address = "Funnystreet 3";
-            //wouter.Country = "Belgium";
-            //wouter.Phonenumber = "0444444444";
-            //wouter.Postcode = "3600";
-            //wouter.Email = "none@ofyourbusiness.com";
-
-            //Customer wouter2 = new Customer("W00ter", "Kenis");
-            //wouter2.Address = "Funnystreet 3";
-            //wouter2.Country = "Belgium";
-            //wouter2.Phonenumber = "0444444444";
-            //wouter2.Postcode = "3600";
-            //wouter2.Email = "none@ofyourbusiness.com";
-
-            //Customer wouter3 = new Customer("Clone", "Kenis");
-            //wouter3.Address = "Funnystreet 3";
-            //wouter3.Country = "Belgium";
-            //wouter3.Phonenumber = "0444444444";
-            //wouter3.Postcode = "3600";
-            //wouter3.Email = "none@ofyourbusiness.com";
-
-            //List<Customer> customerList = new List<Customer>();
-            //customerList.Add(wouter);
-            //customerList.Add(wouter2);
-            //customerList.Add(wouter3);
-
-            //allCustomersComboBox.ItemsSource = customerList;
-
-            //allCustomersComboBox.SelectedIndex = allCustomersComboBox.Items.Count - 1;
-
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
             //update db, list, combobox
         }
-
-        public static void update()
-        {
-
-        }
-
-
         private void allCustomersComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             DataContext = (Customer)allCustomersComboBox.SelectedItem;
@@ -117,7 +81,7 @@ namespace CustomerManagement
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            AddCustomerScreen addCustomerScreen = new AddCustomerScreen();
+            AddCustomerScreen addCustomerScreen = new AddCustomerScreen(this, customers);
             addCustomerScreen.Show();
         }
 
