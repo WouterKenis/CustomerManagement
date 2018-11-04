@@ -61,7 +61,7 @@ namespace CustomerManagement
             SqlConnection connectionUpdate = new SqlConnection(connectionString);
 
             SqlCommand commandUpdate = new SqlCommand();
-            commandUpdate.Connection = connection;
+            commandUpdate.Connection = connectionUpdate;
             commandUpdate.CommandText = "select * from Customers";
 
             connectionUpdate.Open();
