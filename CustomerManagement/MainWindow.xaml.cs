@@ -86,8 +86,15 @@ namespace CustomerManagement
 
         }
 
-        private void deleteButton_Click(object sender, RoutedEventArgs e)
-        {
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO Table (First Name, Last Name, Address, Postcode, Country, Phonenumber, E-mail) VALUES (Wouter, Kenis,Funnystreet 3, 3600, Belgium, 0496220524, da.wouter@gmail.com)"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = conn;
+
+                    //cmd.Parameters.AddWithValue("@Open", textBox13.Text);
+                    //cmd.Parameters.AddWithValue("@High", textBox14.Text);
+                    //cmd.Parameters.AddWithValue("@Low", textBox15.Text);
+                    //cmd.Parameters.AddWithValue("@Close", textBox16.Text);
 
         }
 
