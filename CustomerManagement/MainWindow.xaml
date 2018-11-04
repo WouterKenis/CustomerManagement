@@ -27,6 +27,7 @@
         <Button Name="saveButton" Content="Save" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="0,205,0,0" Click="saveButton_Click"/>
         <Button Name="deleteButton" Content="Delete" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="80,205,0,0" Click="deleteButton_Click"/>
         <Button Name="addButton" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="265,205,0,0" Click="addButton_Click"/>
+        <Button Name="searchButton" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="174,205,0,0" Click="searchButton_Click"/>
 
     </Grid>
 </Window>

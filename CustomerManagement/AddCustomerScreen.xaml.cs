@@ -30,18 +30,11 @@ namespace CustomerManagement
 
             SqlConnection connection = new SqlConnection(ConnectionString);
 
-            SqlCommand command = new SqlCommand();
-            command.Connection = connection;
-            command.CommandText = "select * from table";
+            
 
             connection.Open();
 
-            SqlDataReader reader = command.ExecuteReader();
 
-            while (reader.Read())
-            {
-                Customer
-            }
         }
     }
 }
