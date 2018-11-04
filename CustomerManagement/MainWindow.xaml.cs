@@ -35,7 +35,7 @@ namespace CustomerManagement
 
             SqlCommand command = new SqlCommand();
             command.Connection = connection;
-            command.CommandText = "select * from table";
+            command.CommandText = "select * from Customers";
 
             connection.Open();
 
