@@ -3,16 +3,29 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace CustomerManagement
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         List<Customer> customers;
         string connectionString;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -87,10 +100,12 @@ namespace CustomerManagement
             commandUpdate.Parameters.AddWithValue("@Country", countryBox.Text.Trim());
             commandUpdate.Parameters.AddWithValue("@Phonenumber", phoneNumberBox.Text.Trim());
             commandUpdate.Parameters.AddWithValue("@Email", emailBox.Text.Trim());
+
             try
             {
                 commandUpdate.ExecuteNonQuery();
                 MessageBox.Show("Updated.");
+
             }
             catch (Exception)
             {
@@ -101,6 +116,11 @@ namespace CustomerManagement
                 connectionUpdate.Close();
             }
 
+            MessageBox.Show(customers[allCustomersComboBox.SelectedIndex].ToString());
+            allCustomersComboBox.ItemsSource = null;
+            allCustomersComboBox.ItemsSource = customers;
+
+
         }
         private void allCustomersComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -109,13 +129,12 @@ namespace CustomerManagement
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            AddCustomerScreen addCustomerScreen = new AddCustomerScreen(this, customers);
+            AddCustomerScreen addCustomerScreen = new AddCustomerScreen(this);
             addCustomerScreen.Show();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            //delete from db, list, combobox (last two are easy enough) :p
 
             SqlConnection connectionDelete = new SqlConnection(connectionString);
 
@@ -143,7 +162,13 @@ namespace CustomerManagement
             {
                 connectionDelete.Close();
             }
+            MessageBox.Show(customers[allCustomersComboBox.SelectedIndex] + " " + allCustomersComboBox.SelectedIndex);
+            customers.RemoveAt(allCustomersComboBox.SelectedIndex);
 
+            allCustomersComboBox.ItemsSource = null;
+
+            allCustomersComboBox.ItemsSource = customers;
+            allCustomersComboBox.SelectedIndex = allCustomersComboBox.SelectedIndex + 1;
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)

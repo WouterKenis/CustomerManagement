@@ -13,7 +13,7 @@ namespace CustomerManagement
         MainWindow main;
         List<Customer> customers;
 
-        public AddCustomerScreen(MainWindow main, List<Customer> customers)
+        public AddCustomerScreen(MainWindow main)
         {
             InitializeComponent();
 
@@ -42,10 +42,13 @@ namespace CustomerManagement
             command.Parameters.Add("@Phonenumber", SqlDbType.VarChar, 50).Value = phoneNumberBox.Text;
             command.Parameters.Add("@Email", SqlDbType.VarChar, 50).Value = emailBox.Text;
 
+            connection.Open();
+
             try
             {
-                connection.Open();
+                
                 command.ExecuteNonQuery();
+                MessageBox.Show("Customer added.");
             }
             catch (SqlException ex)
             {
@@ -55,8 +58,6 @@ namespace CustomerManagement
             {
                 connection.Close();
             }
-
-            MessageBox.Show("Customer added.");
 
             SqlConnection connectionUpdate = new SqlConnection(connectionString);
 
