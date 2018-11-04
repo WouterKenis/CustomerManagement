@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomerManagement;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -25,6 +26,27 @@ namespace CustomerManagement
         public MainWindow()
         {
             InitializeComponent();
+
+            //populate combobox
+            string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;
+            AttachDbFilename=C:\Users\Gebruiker\source\repos\CustomerManagement\CustomerManagement\Customers.mdf;Integrated Security=True";
+
+            SqlConnection connection = new SqlConnection(ConnectionString);
+
+            SqlCommand command = new SqlCommand();
+            command.Connection = connection;
+            command.CommandText = "select * from table";
+
+            connection.Open();
+
+            SqlDataReader reader = command.ExecuteReader();
+            List<Customer> customers = new List<Customer>();
+
+            while (reader.Read())
+            {
+                Customer customer = new Customer();
+                // =(
+            }
 
             Customer wouter = new Customer("Wouter", "Kenis");
             wouter.Address = "Funnystreet 3";
@@ -66,37 +88,23 @@ namespace CustomerManagement
             //        cmd.CommandType = CommandType.Text;
             //        cmd.Connection = conn;
 
-            //        //cmd.Parameters.AddWithValue("@Open", textBox13.Text);
-            //        //cmd.Parameters.AddWithValue("@High", textBox14.Text);
-            //        //cmd.Parameters.AddWithValue("@Low", textBox15.Text);
-            //        //cmd.Parameters.AddWithValue("@Close", textBox16.Text);
+            //        //cmd.Parameters.AddWithValue();
+            //        //cmd.Parameters.AddWithValue();
+            //        //cmd.Parameters.AddWithValue();
+            //        //cmd.Parameters.AddWithValue();
 
             //        cmd.ExecuteNonQuery();
             //        conn.Close();
             //    }
-            //    //g
-            //    //CustomerManagement.Update(database.Stocks); //LINE***added later but still getting "Incorrect syntax near the keyword 'Open'."
             //}
 
-            
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
-
+            //update db, list, combobox
         }
 
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO Table (First Name, Last Name, Address, Postcode, Country, Phonenumber, E-mail) VALUES (Wouter, Kenis,Funnystreet 3, 3600, Belgium, 0496220524, da.wouter@gmail.com)"))
-                {
-                    cmd.CommandType = CommandType.Text;
-                    cmd.Connection = conn;
-
-                    //cmd.Parameters.AddWithValue("@Open", textBox13.Text);
-                    //cmd.Parameters.AddWithValue("@High", textBox14.Text);
-                    //cmd.Parameters.AddWithValue("@Low", textBox15.Text);
-                    //cmd.Parameters.AddWithValue("@Close", textBox16.Text);
-
-        }
 
         private void allCustomersComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -107,6 +115,11 @@ namespace CustomerManagement
         {
             AddCustomerScreen addCustomerScreen = new AddCustomerScreen();
             addCustomerScreen.Show();
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            //delete from db, list, combobox (last two are easy enough) :p
         }
     }
 }

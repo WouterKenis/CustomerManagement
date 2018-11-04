@@ -23,6 +23,6 @@
         <TextBox Name="addressBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,57,0,0"/>
         <TextBox Name="lastNameBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,31,0,0"/>
         <TextBox Name="emailBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,167,0,0"/>
-        <Button Content="Save" HorizontalAlignment="Right" VerticalAlignment="Top" Width="372" Margin="0,207,10,0" Click="Button_Click"/>
+        <Button Name="saveButton" Content="Save" HorizontalAlignment="Right" VerticalAlignment="Top" Width="382" Margin="0,207,0,0" Click="saveButton_Click"/>
     </Grid>
 </Window>
