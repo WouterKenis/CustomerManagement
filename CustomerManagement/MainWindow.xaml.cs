@@ -117,7 +117,7 @@ namespace CustomerManagement
 
         private void addButton_Click(object sender, RoutedEventArgs e)
         {
-            AddCustomerScreen addCustomerScreen = new AddCustomerScreen(this);
+            AddCustomerScreen addCustomerScreen = new AddCustomerScreen(this, customers);
             addCustomerScreen.Show();
         }
 

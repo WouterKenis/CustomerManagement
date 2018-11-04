@@ -13,12 +13,12 @@ namespace CustomerManagement
         MainWindow main;
         List<Customer> customers;
 
-        public AddCustomerScreen(MainWindow main)
+        public AddCustomerScreen(MainWindow main, List<Customer> customers)
         {
             InitializeComponent();
 
             this.main = main;
-            
+            this.customers = customers;
 
             connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;
             AttachDbFilename=C:\Users\Gebruiker\source\repos\CustomerManagement\CustomerManagement\Customers.mdf;Integrated Security=True";
@@ -59,39 +59,48 @@ namespace CustomerManagement
                 connection.Close();
             }
 
-            SqlConnection connectionUpdate = new SqlConnection(connectionString);
+            //SqlConnection connectionUpdate = new SqlConnection(connectionString);
 
-            SqlCommand commandUpdate = new SqlCommand();
-            commandUpdate.Connection = connectionUpdate;
-            commandUpdate.CommandText = "select * from Customers";
+            //SqlCommand commandUpdate = new SqlCommand();
+            //commandUpdate.Connection = connectionUpdate;
+            //commandUpdate.CommandText = "select * from Customers";
 
-            connectionUpdate.Open();
+            //connectionUpdate.Open();
 
-            SqlDataReader reader = commandUpdate.ExecuteReader();
-            customers = new List<Customer>();
+            //SqlDataReader reader = commandUpdate.ExecuteReader();
+            //customers = new List<Customer>();
 
-            int firstName = reader.GetOrdinal("FirstName");
-            int lastName = reader.GetOrdinal("LastName");
-            int address = reader.GetOrdinal("Address");
-            int postcode = reader.GetOrdinal("Postcode");
-            int country = reader.GetOrdinal("Country");
-            int phoneNumber = reader.GetOrdinal("Phonenumber");
-            int email = reader.GetOrdinal("Email");
+            //int firstName = reader.GetOrdinal("FirstName");
+            //int lastName = reader.GetOrdinal("LastName");
+            //int address = reader.GetOrdinal("Address");
+            //int postcode = reader.GetOrdinal("Postcode");
+            //int country = reader.GetOrdinal("Country");
+            //int phoneNumber = reader.GetOrdinal("Phonenumber");
+            //int email = reader.GetOrdinal("Email");
 
-            while (reader.Read())
-            {
-                Customer customer = new Customer(reader.GetString(firstName), reader.GetString(lastName));
+            //while (reader.Read())
+            //{
+            //    Customer customer = new Customer(reader.GetString(firstName), reader.GetString(lastName));
 
-                customer.Address = reader.GetString(address);
-                customer.Postcode = reader.GetString(postcode);
-                customer.Country = reader.GetString(country);
-                customer.Phonenumber = reader.GetString(phoneNumber);
-                customer.Email = reader.GetString(email);
+            //    customer.Address = reader.GetString(address);
+            //    customer.Postcode = reader.GetString(postcode);
+            //    customer.Country = reader.GetString(country);
+            //    customer.Phonenumber = reader.GetString(phoneNumber);
+            //    customer.Email = reader.GetString(email);
 
-                customers.Add(customer);
-            }
+            //    customers.Add(customer);
+            //}
 
-            connection.Close();
+            //connection.Close();
+
+            Customer addedCustomer = new Customer(firstNameBox.Text, lastNameBox.Text);
+            addedCustomer.Address = addressBox.Text;
+            addedCustomer.Country = countryBox.Text;
+            addedCustomer.Email = emailBox.Text;
+            addedCustomer.Phonenumber = phoneNumberBox.Text;
+            addedCustomer.Postcode = postcodeBox.Text;
+
+            customers.Add(addedCustomer);
 
             main.allCustomersComboBox.ItemsSource = customers;
             main.allCustomersComboBox.SelectedIndex = main.allCustomersComboBox.Items.Count - 1;
