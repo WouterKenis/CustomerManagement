@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CustomerManagement"
         mc:Ignorable="d"
-        Title="SearchCustomerScreen" Height="350" Width="400">
+        Title="SearchCustomerScreen" Height="350" Width="600">
     <Grid>
         <Label Content="Firstname" HorizontalAlignment="Left" VerticalAlignment="Top"/>
         <Label Content="Lastname" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,25,0,0"/>
@@ -23,7 +23,8 @@
         <TextBox Name="addressBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,57,0,0"/>
         <TextBox Name="lastNameBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,31,0,0"/>
         <TextBox Name="emailBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,167,0,0"/>
-        <Button Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="0,206,0,0"/>
+        <Button Name="searchButton" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="0,206,0,0" Click="searchButton_Click"/>
+        <ComboBox Name="searchResults" HorizontalAlignment="Left" VerticalAlignment="Top" Width="165" Margin="374,4,0,0"/>
 
 
     </Grid>

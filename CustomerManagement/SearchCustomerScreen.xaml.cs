@@ -14,14 +14,19 @@ using System.Windows.Shapes;
 
 namespace CustomerManagement
 {
-    /// <summary>
-    /// Interaction logic for SearchCustomerScreen.xaml
-    /// </summary>
+
     public partial class SearchCustomerScreen : Window
     {
         public SearchCustomerScreen()
         {
             InitializeComponent();
+        }
+
+        private void searchButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<Customer> customerSearchResults = new List<Customer>();
+
+            searchResults.ItemsSource = customerSearchResults;
         }
     }
 }
