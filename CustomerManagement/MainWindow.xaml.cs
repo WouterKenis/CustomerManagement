@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Windows;
 using System.Windows.Controls;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace CustomerManagement
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
         public List<Customer> customers;
         string connectionString;

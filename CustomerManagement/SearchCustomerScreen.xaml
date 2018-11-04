@@ -16,15 +16,16 @@
         <Label Content="E-mail" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,167,0,0"/>
         <TextBox HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,139,0,0"/>
 
-        <TextBox Name="firstNameBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,3,0,0"/>
-        <TextBox Name="phoneNumberBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,138,0,0"/>
-        <TextBox Name="countryBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,110,0,0"/>
-        <TextBox Name="postcodeBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,82,0,0"/>
-        <TextBox Name="addressBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,57,0,0"/>
-        <TextBox Name="lastNameBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,31,0,0"/>
-        <TextBox Name="emailBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="208" Margin="132,167,0,0"/>
-        <Button Name="searchButton" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="0,206,0,0" Click="searchButton_Click"/>
-        <ComboBox Name="searchResults" HorizontalAlignment="Left" VerticalAlignment="Top" Width="165" Margin="374,4,0,0"/>
+        <TextBox Name="firstNameBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=FirstName}" VerticalAlignment="Top" Width="208" Margin="132,3,0,0"/>
+        <TextBox Name="phoneNumberBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Phonenumber}" VerticalAlignment="Top" Width="208" Margin="132,138,0,0"/>
+        <TextBox Name="countryBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Country}" VerticalAlignment="Top" Width="208" Margin="132,110,0,0"/>
+        <TextBox Name="postcodeBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Postcode}" VerticalAlignment="Top" Width="208" Margin="132,82,0,0"/>
+        <TextBox Name="addressBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Address}" VerticalAlignment="Top" Width="208" Margin="132,57,0,0"/>
+        <TextBox Name="lastNameBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=LastName}" VerticalAlignment="Top" Width="208" Margin="132,31,0,0"/>
+        <TextBox Name="emailBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" Text="{Binding Path=Email}" VerticalAlignment="Top" Width="208" Margin="132,167,0,0"/>
+
+        <Button Name="searchButton" Content="Search" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="10,206,0,0" Click="searchButton_Click"/>
+        <ComboBox Name="searchResults" HorizontalAlignment="Left" VerticalAlignment="Top" Width="165" Margin="374,4,0,0" SelectionChanged="searchResults_SelectionChanged"/>
 
 
     </Grid>
